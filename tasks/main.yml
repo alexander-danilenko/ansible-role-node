@@ -48,7 +48,7 @@
   register: npm_global_packages
 
 - name: 'Install global NPM packages'
-  when: npm_global_packages.stdout.find(item) == -1
+  when: npm_global_packages.changed and npm_global_packages.stdout.find(item) == -1
   loop: '{{ nvm_npm_global_packages }}'
   shell: |
     . {{ nvm_init_script }}
